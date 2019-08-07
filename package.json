@@ -1,0 +1,38 @@
+{
+  "name": "matches-subimage",
+  "version": "1.0.0",
+  "description": "Lightweight library that finds matches of an image within another image",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dieterwalckiers/matches-subimage.git"
+  },
+  "keywords": [
+    "image",
+    "pixels",
+    "comparison",
+    "match",
+    "matches",
+    "subimage",
+    "within",
+    "image",
+    "inside"
+  ],
+  "author": "Dieter Walckiers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dieterwalckiers/matches-subimage/issues"
+  },
+  "homepage": "https://github.com/dieterwalckiers/matches-subimage#readme",
+  "dependencies": {
+    "pngjs": "^3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "tape": "^4.11.0"
+  }
+}
