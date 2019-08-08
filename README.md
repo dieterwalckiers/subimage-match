@@ -10,7 +10,7 @@ const foundMatch = subImageMatch(img, subImg);
 
 ## API
 
-### pixelmatch(img, subImg[, options])
+### subImageMatch(img, subImg[, options])
 
 - `img1`, `img2` — Image data of the images to compare (`Buffer`, `Uint8Array` or `Uint8ClampedArray`).
 - `options` is an object literal with only one property currently:
@@ -37,7 +37,7 @@ subImageMatch(img1.data, img2.data, {threshold: 0.1});
 Install with NPM:
 
 ```bash
-npm install pixelmatch
+npm install subimage-match
 ```
 
 ## [Changelog](https://github.com/dieterwalckiers/subimage-match/releases)
