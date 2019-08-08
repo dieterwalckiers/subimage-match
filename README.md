@@ -29,7 +29,7 @@ const subImageMatch = require("subimage-match");
 
 const img = PNG.sync.read(fs.readFileSync("image.png"));
 const subImg = PNG.sync.read(fs.readFileSync("sub_image.png"));
-subImageMatch(img1.data, img2.data, {threshold: 0.1});
+subImageMatch(img1, img2, {threshold: 0.1});
 ```
 
 ## Install
