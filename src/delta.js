@@ -2,15 +2,13 @@ module.exports = pixelMatches;
 
 // calculate color difference according to the paper "Measuring perceived color difference
 // using YIQ NTSC transmission color space in mobile applications" by Y. Kotsarenko and F. Ramos
-function pixelMatches(img1, img2, k, m, maxDelta, yOnly) {
+function pixelMatches(img1, img2, k, m, maxDelta, options, yOnly) {
 
     if ((k + 3) >= img1.length) {
-        return false;
-        // throw new Error(`Cannot get positions ${k} through ${k + 3} from img array of length ${img1.length}`);
+        throw new Error(`Cannot get positions ${k} through ${k + 3} from img array of length ${img1.length}`);
     }
     if ((m + 3) >= img2.length) {
-        return false;
-        // throw new Error(`Cannot get positions ${m} through ${m + 3} from img array of length ${img2.length}`);
+        throw new Error(`Cannot get positions ${m} through ${m + 3} from img array of length ${img2.length}`);
     }
 
     let r1 = img1[k + 0];
@@ -50,7 +48,6 @@ function pixelMatches(img1, img2, k, m, maxDelta, yOnly) {
         const q = rgb2q(r1, g1, b1) - rgb2q(r2, g2, b2);
         delta = 0.5053 * y * y + 0.299 * i * i + 0.1957 * q * q;
     }
-    // console.log(`d:${delta}, compared to maxDelta (${maxDelta}) getting a ${delta <= maxDelta ? "match" :"non-match"}`);
     return delta <= maxDelta;    
 }
 

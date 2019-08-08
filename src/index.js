@@ -1,19 +1,15 @@
 const pixelMatches = require("./delta");
-module.exports = subImageFoundInImage;
+module.exports = subImageMatch;
 
 const defaultOptions = {
     threshold: 0.1,         // matching threshold (0 to 1); smaller is more sensitive
     // includeAA: false,       // whether to skip anti-aliasing detection. WIP (see pixelmatch package)
 };
 
-function subImageFoundInImage(img, subImg, optionsParam) {
+function subImageMatch(img, subImg, optionsParam) {
 
     const { data: imgData, width: imgWidth, height: imgHeight } = img;
-    const { data: subImgData, width: subImgWidth, height: subImgHeight } = subImg;
-
-    console.log(`img is ${imgWidth} x ${imgHeight}`);
-    console.log(`subImg is ${subImgWidth} x ${subImgHeight}`);
-
+    const { data: subImgData, width: subImgWidth } = subImg;
 
     if (!isPixelData(imgData) || !isPixelData(subImgData)) {
         throw new Error("Image data: Uint8Array, Uint8ClampedArray or Buffer expected.");
@@ -23,8 +19,6 @@ function subImageFoundInImage(img, subImg, optionsParam) {
     }
     const options = Object.assign({}, defaultOptions, optionsParam);
     const maxDelta = 35215 * options.threshold * options.threshold;
-
-    console.log("max delta", maxDelta);
 
     let subImgPos = 0;
     let matchingTopRowStartX = 0;
@@ -48,10 +42,10 @@ function subImageFoundInImage(img, subImg, optionsParam) {
 
                 matchingTopRowX++;
                 if (matchingTopRowX === subImgWidth) {
-                    // console.log(`rowmatch on ${matchingTopRowStartY}-${matchingTopRowStartX}, now checking the rows below!`);
-                    if (subImageFoundOnCoordinates(img, subImg, matchingTopRowStartY, matchingTopRowStartX, maxDelta)) {
+                    if (subImageMatchOnCoordinates(img, subImg, matchingTopRowStartY, matchingTopRowStartX, maxDelta)) {
                         return true;
                     }
+                    x = matchingTopRowStartX; // put our search position x back to where the matching row began
                     matchingTopRowX = 0;
                 }
             } else {
@@ -62,30 +56,26 @@ function subImageFoundInImage(img, subImg, optionsParam) {
     return false;
 }
 
-function subImageFoundOnCoordinates(img, subImg, matchY, matchX, maxDelta) {
+function subImageMatchOnCoordinates(img, subImg, matchY, matchX, maxDelta) {
     const { data: imgData, width: imgWidth } = img;
     const { data: subImgData, width: subImgWidth, height: subImgHeight } = subImg;
     let subImgX = 0;
     let subImgY = 0;
     for (let imgY = matchY; imgY < (matchY + subImgHeight); imgY++) {
         subImgX = 0;
-        console.log(`checking row ${imgY} (${subImgY} in subImg), from ${matchX} to ${matchX + subImgWidth - 1}`);
 
         for (let imgX = matchX; imgX < (matchX + subImgWidth); imgX++) {
 
             const imgPos = posFromCoordinates(imgY, imgX, imgWidth);
             const subImgPos = posFromCoordinates(subImgY, subImgX, subImgWidth);
-            const matches = pixelMatches(imgData, subImgData, imgPos, subImgPos, maxDelta);
+            const matches = pixelMatches(imgData, subImgData, imgPos, subImgPos, maxDelta, undefined, imgY === 5);
             if (!matches) {
-                console.log(`matches is ${matches}, so nope for coords ${imgY}-${imgX} (${subImgY}-${subImgX} on subImg)`);
                 return false;
             }
             subImgX++;
         }
-        subImgY >= 0 && console.log(`row ${subImgY} matches`);
         subImgY++;
     }
-    console.log(`complete match on ${matchY}-${matchX}`);
     return true;
 }
 
