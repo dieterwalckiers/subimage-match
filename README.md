@@ -1,4 +1,4 @@
-# matches-subimage
+# subimage-match
 
 Lightweight library that finds matches of an image within another image, perfect for visual validation in testing scenarios.
 Heavily inspired by (read: blatantly copied some subroutines from) [pixelmatch](https://github.com/mapbox/pixelmatch), and just like [pixelmatch](https://github.com/mapbox/pixelmatch), its advantages are that it's fast and lightweight, with zero dependencies.
