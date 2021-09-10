@@ -26,7 +26,7 @@ function subImageMatch(img, subImg, optionsParam) {
 
     for (let y = 0; y < imgHeight; y++) {
 
-        matchingTopRowX = 0; // restart finding top row mode when we hit a new row in the main img
+        let matchingTopRowX = 0; // restart finding top row mode when we hit a new row in the main img
         for (let x = 0; x < imgWidth; x++) {
 
             const imgPos = posFromCoordinates(y, x, imgWidth);
