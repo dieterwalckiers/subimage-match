@@ -4,7 +4,7 @@
     "description": "Lightweight library that finds matches of an image within another image",
     "main": "src/index.js",
     "scripts": {
-        "lint": "eslint",
+        "lint": "eslint --fix src test",
         "test": "node test/test.js"
     },
     "repository": {
