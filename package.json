@@ -2,9 +2,9 @@
     "name": "matches-subimage",
     "version": "1.0.0",
     "description": "Lightweight library that finds matches of an image within another image",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
-        "lint": "eslint",
+        "lint": "eslint --fix src test",
         "test": "node test/test.js"
     },
     "repository": {
@@ -32,5 +32,6 @@
         "pngjs": "^3.4.0",
         "eslint": "^6.1.0",
         "tape": "^4.11.0"
-    }
+    },
+    "files": ["src"]
 }
