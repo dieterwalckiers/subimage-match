@@ -29,7 +29,7 @@
     },
     "homepage": "https://github.com/dieterwalckiers/matches-subimage#readme",
     "devDependencies": {
-        "eslint": "^6.1.0",
+        "eslint": "^7.32.0",
         "pngjs": "^3.4.0",
         "tape": "^4.11.0"
     },
