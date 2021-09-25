@@ -1,6 +1,6 @@
 {
     "name": "matches-subimage",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Lightweight library that finds matches of an image within another image",
     "main": "src/index.js",
     "scripts": {
@@ -29,9 +29,12 @@
     },
     "homepage": "https://github.com/dieterwalckiers/matches-subimage#readme",
     "devDependencies": {
-        "pngjs": "^3.4.0",
         "eslint": "^6.1.0",
+        "pngjs": "^3.4.0",
         "tape": "^4.11.0"
     },
-    "files": ["src"]
+    "files": [
+        "src"
+    ],
+    "dependencies": {}
 }

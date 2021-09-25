@@ -68,7 +68,7 @@ function subImageMatchOnCoordinates(img, subImg, matchY, matchX, maxDelta) {
 
             const imgPos = posFromCoordinates(imgY, imgX, imgWidth);
             const subImgPos = posFromCoordinates(subImgY, subImgX, subImgWidth);
-            const matches = pixelMatches(imgData, subImgData, imgPos, subImgPos, maxDelta, undefined, imgY === 5);
+            const matches = pixelMatches(imgData, subImgData, imgPos, subImgPos, maxDelta, imgY === 5);
             if (!matches) {
                 return false;
             }
