@@ -1,3 +1,5 @@
+! unmaintained !
+
 # matches-subimage
 
 Lightweight library that finds matches of an image within another image, perfect for visual validation in testing scenarios.
